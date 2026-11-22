@@ -1,0 +1,1218 @@
+# Cooldown w sekundach po wybraniu itemu (3 godziny = 10800)
+cooldown-seconds: 10800
+
+# Gracz odradza sie od razu, bez ekranu smierci
+immediate-respawn: true
+# Minimalna liczba serc: gracz na 1 sercu, ktory zginie, odradza sie dalej z 1 sercem
+min-hearts: 1
+
+# Kowadlo: koszt nalozenia ksiegi (poziomy xp)
+anvil-cost: 5
+# Zeszyt: czas odnowienia w sekundach
+zeszyt-cooldown-seconds: 90
+
+# Pszczeli Roj
+pszczeli-roj:
+  bee-name: "<yellow>[Pszczoła roju]"   # nazwa nad kazda pszczola (jasnozolta)
+  cooldown-seconds: 120
+  bees: 8
+  poison-seconds: 15
+  poison-level: 2
+  nausea-seconds: 10
+  nausea-level: 2
+  health-percent: 0.10   # 10% aktualnego zdrowia
+
+# Luk Kupidyna
+kupidyn:
+  cooldown-seconds: 90
+
+# Antyperla
+antyperla:
+  cooldown-seconds: 30
+  block-seconds: 20
+
+# Pradawna Laska
+pradawna-laska:
+  cooldown-seconds: 30
+  range: 15
+  slowness-seconds: 6
+  slowness-level: 4
+# Lakomczuch: szansa na odnowienie glodu podczas walki (0.20 = 20%)
+lakomczuch-chance: 0.20
+
+# Kusza z pulapka pajeczyn
+pajecza-kusza:
+  cooldown-seconds: 120  # 2 minuty
+  duration-seconds: 10   # po tylu sekundach pajeczyny znikaja
+  legs-height: 0.75      # trafienie ponizej tej wysokosci (w blokach od stop) = spodnie/buty, powyzej = tors/glowa
+
+# Leki Dziadka
+leki-dziadka:
+  cooldown-seconds: 60
+  negative-effects: [poison, wither, slowness, mining_fatigue, nausea, blindness, hunger, weakness, levitation, darkness, unluck, bad_omen, infested, oozing, weaving, raid_omen, trial_omen]
+
+# Kieszen Zlodzieja
+kieszen:
+  title: "Kieszeń Złodzieja"
+  drop-when-full: true   # brak miejsca w ekwipunku = przedmiot wypada na ziemię (false = zostaje w kieszeni)
+  button-name: "<green>Wypłać przedmioty"
+  button-lore: "<gray>Kliknij przedmiot, aby wypłacić tylko jego"
+
+# Zwierzaki
+pets:
+  star-chance: 0.03          # szansa, ze naturalnie zrespiony mob dostanie gwiazdke
+  star-name: "<yellow>⭐"
+  star-mobs:
+    - ZOMBIE
+    - CREEPER
+    - SPIDER
+    - SKELETON
+    - BAT
+    - SHEEP
+    - COW
+    - PIG
+    - CHICKEN
+    - SQUID
+    - DROWNED
+    - BEE
+    - HORSE
+    - WOLF
+    - FOX
+    - CAT
+    - DOLPHIN
+    - HUSK
+    - STRAY
+    - SLIME
+    - WITCH
+    - TURTLE
+    - PILLAGER
+    - IRON_GOLEM
+    - POLAR_BEAR
+    - PARROT
+    - OCELOT
+    - AXOLOTL
+    - PANDA
+    - GUARDIAN
+    - CAVE_SPIDER
+    - SILVERFISH
+    - ZOMBIE_VILLAGER
+    - MULE
+  consume-cage-on-fail: true # czy klatka znika, gdy zlapanie sie nie uda
+  # Zwykla klatka: szansa zalezy od rangi. Dopisz uprawnienia rang, najwyzsza pasujaca szansa wygrywa, np.:
+  # rank-chances:
+  #   - permission: "twoj.plugin.ranga.vip"
+  #     chance: 60
+  rank-chances: []
+  skew: 3.0                  # im wiecej, tym rzadsze wysokie wartosci efektow
+  pet-name: "<green><bold>Klatka z zwierzakiem"
+  pet-material: ""            # puste = jajo moba; np. SPAWNER, zeby kazdy zwierzak mial ten sam wyglad
+  poison-seconds: 5           # dlugosc zatrucia z efektu "Szansa na zatrucie"
+  # Glowki zwierzakow: wpisz wartosc tekstury (pole "Value" z minecraft-heads.com) dla danego moba, np.
+  # heads:
+  #   PIG: "eyJ0ZXh0dXJlcyI6..."
+  # Bez wpisu zwierzak jest jajem moba (zombie, szkielet i creeper maja zwykle glowy).
+  heads: {}
+  # Krzywa rzadkosci wartosci efektow (poziomy rzadki-mityczny). f = ulamek zakresu poziomu, chance = % szans,
+  # ze wylosowana wartosc bedzie co najmniej taka. Przyklad mitycznego (zakres 1-51): >=30% to ok. 10%, >=44% to ok. 0,5%.
+  value-curve:
+    - {f: 0.15, chance: 70}
+    - {f: 0.35, chance: 35}
+    - {f: 0.55, chance: 14}
+    - {f: 0.85, chance: 0.5}
+    - {f: 1.0, chance: 0.05}
+  effects:
+    damage-reduction: "Redukcja Obrazen"
+    dripstone-reduction: "Redukcja Obrazen od Dripa"
+    avg-damage: "Srednie Obrazenia"
+    crit-damage: "Obrazenia Krytyczne"
+    fall-reduction: "Redukcja Obrazen od Upadku"
+    crit-chance: "Szansa na Kryta"
+    poison-chance: "Szansa na zatrucie"
+  color-red-below: 10         # wartosc ponizej (takze ujemna) = czerwony
+  color-gold-below: 25        # ponizej = zloty, od tej wartosci = jasnoniebieski
+  tiers:
+    zwykly:
+      weight: 40
+      name: "<green>Zwykły"
+      effects: 2
+      best-chance: 0
+      uniform: true            # rownomiernie (bez krzywej), zeby ujemne wartosci tez sie zdarzaly
+      range: [-15, 5]          # zwykly zwierzak moze miec ujemne efekty
+      best-range:
+        avg-damage: [-15, 5]
+        damage-reduction: [-15, 5]
+    rzadki:
+      weight: 40
+      name: "<gray>Rzadki"
+      effects: 2
+      best-chance: 0.5
+      range: [1, 5]
+      best-range:
+        avg-damage: [1, 10]
+        damage-reduction: [1, 10]
+    bardzo_rzadki:
+      weight: 30
+      name: "<aqua>Bardzo rzadki"
+      effects: 2
+      best-chance: 1
+      range: [1, 8]
+      best-range:
+        avg-damage: [1, 15]
+        damage-reduction: [1, 15]
+    epicki:
+      weight: 20
+      name: "<dark_purple>Epicki"
+      effects: 3
+      best-chance: 5
+      range: [1, 12]
+      best-range:
+        avg-damage: [1, 30]
+        damage-reduction: [1, 25]
+    mityczny:
+      weight: 10
+      name: "<red>Mityczny"
+      effects: 4
+      best-chance: 100
+      range: [1, 20]
+      best-range:
+        avg-damage: [1, 51]
+        damage-reduction: [1, 49]
+
+# Scoreboard po prawej stronie ekranu
+scoreboard:
+  enabled: true
+  title: "<blue><bold>LIFESTEAL SMP"
+  update-ticks: 20          # co ile ticków odświeżać (20 = 1 sekunda)
+  ranking-start: 500          # ranking na start
+  # Zabojstwo daje: ranking-kill-base * scale / (scale + TWOJ_RANKING), czyli im wyzszy ranking, tym mniej punktow
+  ranking-kill-base: 50
+  ranking-kill-scale: 1000
+  # Smierc zabiera ranking-death-percent % rankingu (minimum ranking-death-min), czyli im wyzszy ranking, tym wiecej traci
+  ranking-death-percent: 5
+  ranking-death-min: 5
+  # Skad brac sektor, klan i pieniadze. Wpisz stala wartosc albo placeholder PlaceholderAPI,
+  # np. "%vault_eco_balance_formatted%". Bez PlaceholderAPI pokaze sie dokladnie ten tekst.
+  sources:
+    sector: "spawn_1"
+    clan: "brak"
+    money: "0$"
+  # Tagi: <nick> <kills> <deaths> <ranking> <hearts> <sector> <clan> <money>
+  lines:
+    - "<red>★ <white>Sektor: <red><sector>"
+    - "<yellow>✎ <white>Nick: <yellow><nick>"
+    - "<aqua>⚑ <white>Klan: <aqua><clan>"
+    - "<gold>⚔ <white>KD: <aqua><kills> ⚔ <gray>| <white><deaths> <red>☠"
+    - "<light_purple>⚡ <white>Ranking: <light_purple><ranking>"
+    - "<green>$ <white>Pieniądze: <green><money>"
+    - "<red>♥ <white>Serca: <dark_red><hearts>♥"
+    - ""
+    - "<white>Strona: <blue>SelectItemy"
+    - "<white>Discord: <blue>SelectItemy"
+
+# Mityczna zmiana (papier otwierajacy GUI zmiany efektow zwierzaka)
+mityczna-zmiana:
+  title: "Mityczna zmiana"
+  button-name: "<green>Zmień efekty"
+  button-lore: "<gray>Zużywa jedną mityczną zmianę"
+
+# Zakreslacz
+zakreslacz:
+  cooldown-seconds: 180      # czas odnowienia PPM (usuwanie pozytywnych efektow)
+  mark-seconds: 15           # tyle sekund widzisz odleglosc uderzonego przeciwnika na Action Barze
+  glowing-seconds: 5         # Glowing po uderzeniu (bez druzyny swieci na bialo)
+  actionbar: "<red><name> <white>- <yellow><distance> kratek"
+  positive-effects: [speed, haste, strength, instant_health, jump_boost, regeneration, resistance, fire_resistance, water_breathing, invisibility, health_boost, absorption, saturation, night_vision, luck, slow_falling, conduit_power, dolphins_grace, hero_of_the_village]
+
+# Kostium Lobuza
+lobuz:
+  damage-reduction-per-piece: 2.5   # % redukcji obrazen za kazda czesc
+  hp-per-piece: 1.0                 # dodatkowe zycie za kazda czesc (1.0 = 0,5 serca)
+  trail-seconds: 3                  # po tylu sekundach Soul Sand wraca do poprzedniego bloku
+  soul-efficiency: 1.0              # Soul Speed I: brak spowolnienia na Soul Sand (0 = wylaczone)
+  soul-speed-bonus: 0.3             # Soul Speed I: bonus predkosci na Soul Sand (0.3 = +30%)
+
+# Menu kostiumu (/kostium)
+costume-menu:
+  title: "Menu kostiumu"
+  pane-name: " "                   # nazwa szyb wokol tabliczki i kostiumu (z zdjecia nie widac)
+  sign-name: "<gold>Menu kostiumu"
+  sign-lore:
+    - "<gray>W tym miejscu możesz założyć swój kostium."
+    - "<gray>Dzięki tej opcji możesz"
+    - "<gray>zmienić swój wygląd <gold>nie tracąc przy tym właściwości"
+    - "<gold>swojego założonego seta!"
+
+# Kostium Wampira
+wampir:
+  hp-per-piece: 1.0          # dodatkowe zycie za kazda czesc (1.0 = 0,5 serca)
+  damage-per-piece: 1.0      # dodatkowe obrazenia za kazda czesc
+  strength-seconds: 30       # czas Sily 2 po pekniecie totemu (pelny komplet)
+
+# Kostium Piglina
+piglin:
+  hp-per-piece: 1.0          # dodatkowe zycie za kazda czesc (1.0 = 0,5 serca)
+  avg-damage-per-piece: 2    # % srednich obrazen za kazda czesc
+  flame-seconds: 5           # jak dlugo plonie przeciwnik po uderzeniu (pelny komplet)
+  flame-damage: 1.0          # obrazenia na sekunde, gdy ogien nie rani normalnie (ognioodpornosc lub woda)
+
+# Wichrowa Kosa
+wichrowa-kosa:
+  launch-velocity: 2.28        # predkosc w gore: ok. 25 kratek wysokosci (PPM)
+  launch-cooldown-seconds: 30
+  fall-immunity-seconds: 10   # tyle sekund po wyrzuceniu nie dostajesz obrazen od upadku (0 = wylaczone)
+  aura-radius: 8              # SHIFT + PPM: promien w kratkach
+  aura-cooldown-seconds: 30
+  aura-effect-seconds: 3
+  mining-fatigue-level: 3     # Powolne Kopanie III
+  slowness-level: 1           # Spowolnienie I
+
+# Petarda
+petarda:
+  power: 3                       # czas lotu rakiety (im wiecej, tym wyzej)
+  explosion-power: 3.0           # sila wybuchow po drodze
+  explosion-interval-ticks: 4    # co ile ticków wybuch (20 ticków = 1 sekunda)
+  safe-ticks: 6                  # tyle ticków na starcie bez wybuchow
+  break-blocks: true             # niszczy bloki dookola
+
+# Miecz N1
+miecz-n1:
+  chance: 35            # % szans przy kazdym uderzeniu
+  strength-level: 2     # Sila 2
+  seconds: 5
+
+# Miecz N1
+miecz-n1:
+  chance: 35               # % szans na jedno uderzenie
+  strength-seconds: 5
+  strength-level: 2
+
+# Siekiera Brutala
+siekiera-brutala:
+  cooldown-seconds: 120      # 2 minuty
+  steal-percent: 30          # % obecnego zdrowia przeciwnika, ktore zabierasz i dostajesz
+
+# Lifesteal
+lifesteal:
+  enabled: true
+  heart-hp: 2                # ile zycia traci sie przy smierci (2 = 1 serce)
+  drop-heart-on-pvp: true    # po zabiciu przez gracza wypada Serce
+
+# Glowne menu
+menu-title: "SelectGUI"
+menu-rows: 6
+
+# Przycisk "Wroc" w podmenu
+back-slot: 49
+back-name: "<gray>Wroc"
+
+messages:
+  cooldown: "<red>Mozesz wybrac kolejny item za <time>."
+  received: "<green>Otrzymales: <item>"
+  no-space: "<red>Masz pelny ekwipunek!"
+  reloaded: "<green>Przeladowano config."
+  zeszyt-cooldown: "<red>Zeszyt mozesz uzyc za <time>."
+  zeszyt-nothing: "<red>Zadna czesc zalozonej zbroi nie wymaga naprawy."
+  zeszyt-title: "<green>Naprawiono Przedmiot"
+  zeszyt-subtitle: "<yellow><piece>"
+  cage-not-star: "<red>Klatka dziala tylko na zwierzaki z gwiazdka."
+  cage-fail: "<red>Zwierzak uciekl!"
+  pet-caught: "<green>Zlapano zwierzaka: <pet>"
+  pocket-dropped: "<yellow>Brak miejsca w ekwipunku, część przedmiotów wypadła na ziemię."
+  no-permission: "<red>Nie masz uprawnień do tej komendy."
+  repair-hand: "<green>Naprawiono przedmiot w ręce."
+  repair-all: "<green>Naprawiono przedmiotów: <count>."
+  repair-nothing: "<red>Nie ma nic do naprawy."
+  reroll-no-pet: "<red>Włóż zwierzaka do środkowego slotu."
+  reroll-no-paper: "<red>Nie masz już mitycznej zmiany."
+  reroll-done: "<green>Efekty zwierzaka zostały zmienione!"
+  pet-none: "<red>Nie masz zwierzaka w ekwipunku."
+  costume-taken-off: "<green>Zdjęto części kostiumu: <count>"
+  costume-none: "<red>Nie masz założonego kostiumu."
+  petarda-ground: "<red>Użyj petardy na ziemi, klikając w blok."
+  withdraw-usage: "<red>Użycie: /wyplacserce <ilość> [piekielne]"
+  withdraw-max: "<red>Możesz wypłacić maksymalnie <max> serc."
+  withdraw-done: "<green>Wypłacono serc: <count>"
+  costume-full: "<red>Brak miejsca w ekwipunku! Zrób miejsce, żeby zdjąć kostium."
+  costume-wrong: "<red>Ta część kostiumu nie pasuje do tego slotu."
+  costume-occupied: "<red>Ten slot jest już zajęty. Zdejmij najpierw kostium."
+  zakreslacz-removed: "<green>Usunięto przeciwnikowi pozytywne efekty: <count>"
+  zakreslacz-none: "<red>Ten przeciwnik nie ma pozytywnych efektów."
+  lifesteal-lost: "<red>Straciłeś serce! Masz teraz <hearts>♥"
+  leki-used: "<green>Usunięto negatywne efekty i wyleczono cię do pełna!"
+  pocket-loot: "<yellow>Przedmioty gracza <player> wpadly do Kieszeni Zlodzieja."
+  pocket-no-space: "<red>Masz pelny ekwipunek, czesc przedmiotow zostala w kieszeni."
+  item-cooldown: "<red>Mozesz uzyc tego przedmiotu za <time>."
+  laska-no-target: "<red>Nie patrzysz na zadnego przeciwnika."
+  antiperla-blocked: "<red>Nie mozesz uzyc perly jeszcze przez <time>!"
+  antiperla-hit-victim: "<red>Trafila cie Antyperla! Nie mozesz uzyc perly przez 20 sekund."
+  antiperla-hit-owner: "<green>Trafiles przeciwnika Antyperla!"
+  heart-used: "<red>Zuzyles serce! <gray>(+1 serce)"
+  heart-max-normal: "<red>Masz juz maksymalna liczbe zwyklych serc (20)."
+  heart-max-infernal: "<red>Masz juz maksymalna liczbe piekielnych serc (10) lub 30 serc lacznie."
+
+# Kategorie w glownym menu (slot liczony od 0)
+# Kazda kategoria otwiera wlasne GUI z itemami (sekcja items)
+categories:
+  ksiegi:
+    slot: 21
+    material: BOOK
+    name: "<aqua>Ksiegi"
+    title: "<aqua>Ksiegi"
+    rows: 6
+    items:
+      lakomczuch:
+        slot: 20
+        material: BOOK
+        book: lakomczuch
+        apply-to: [DIAMOND_HELMET, NETHERITE_HELMET]
+        enchant-lore: "<aqua>Łakomczuch"
+        name: "<aqua><bold>Łakomczuch"
+        lore:
+          - "<gray>» <white>Masz 20% szans na <yellow><bold>odnowienie</bold>"
+          - "<gray>» <yellow><bold>głodu</bold> <white>podczas walki."
+          - ""
+          - "<gray>» <white>Możesz dodać go na <green><bold>Hełm</bold><white>!"
+          - "<gray>» <white>Enchanty nakłada się u <red><bold>Kowala</bold>"
+      obsydianowa_ochrona:
+        slot: 21
+        material: BOOK
+        book: obsydianowa_ochrona
+        apply-to: [DIAMOND_CHESTPLATE, NETHERITE_CHESTPLATE]
+        enchant-lore: "<aqua>Obsydianowa Ochrona"
+        name: "<aqua><bold>Obsydianowa Ochrona"
+        lore:
+          - "<gray>» <white>Otrzymujesz permanentny efekt"
+          - "<gray>» <yellow><bold>Ochrony przed Ogniem</bold>"
+          - ""
+          - "<gray>» <white>Możesz dodać go na <green><bold>Napierśnik</bold><white>!"
+          - "<gray>» <white>Enchanty nakłada się u <red><bold>Kowala</bold>"
+      szybkosc:
+        slot: 22
+        material: BOOK
+        book: szybkosc
+        apply-to: [DIAMOND_BOOTS, NETHERITE_BOOTS]
+        enchant-lore: "<aqua>Szybkość"
+        name: "<aqua><bold>Szybkość"
+        lore:
+          - "<gray>» <white>Otrzymujesz permanentny efekt <yellow><bold>Szybkości I</bold>"
+          - ""
+          - "<gray>» <white>Możesz dodać go na <green><bold>Buty</bold><white>!"
+          - "<gray>» <white>Enchanty nakłada się u <red><bold>Kowala</bold>"
+  klatki:
+    slot: 23
+    material: SPAWNER
+    name: "<dark_green>Klatki na zwierzaka"
+    title: "<dark_green>Klatki na zwierzaka"
+    rows: 6
+    items:
+      klatka_zwykla:
+        slot: 21
+        material: SPAWNER
+        event-item: klatka
+        cage-chance: 50
+        name: "<green><bold>Klatka na zwierzaka"
+        lore:
+          - "<gray>» <yellow>Użyj klatki <white>na mobie z <yellow>⭐ gwiazdką<white>,"
+          - "<gray>» <white>żeby spróbować go złapać."
+          - ""
+          - "<gray>» <white>Szansa na złapanie zwierzaka"
+          - "<gray>» <white>jest zależna od rangi jaką posiadasz."
+      klatka_100:
+        slot: 23
+        material: SPAWNER
+        event-item: klatka
+        cage-chance: 100
+        name: "<green><bold>Klatka na zwierzaka"
+        lore:
+          - "<gray>» <yellow>Użyj klatki <white>na mobie z <yellow>⭐ gwiazdką<white>,"
+          - "<gray>» <white>żeby spróbować go złapać."
+          - ""
+          - "<gray>» <white>Ta klatka posiada <green>100% szans"
+          - "<gray>» <white>na złapanie zwierzaka."
+      jajko_zwierzaka:
+        slot: 25
+        material: ALLAY_SPAWN_EGG
+        event-item: jajko_zwierzaka
+        name: "<green>Jajko zwierzaka"
+        lore:
+          - "<gray>» <white>Przywołuje losowego zwierzaka z <yellow>⭐"
+          - "<gray>» <white>Kliknij PPM na blok"
+      mityczna_zmiana:
+        slot: 31
+        material: PAPER
+        event-item: mityczna_zmiana
+        name: "<light_purple><bold>Mityczna zmiana"
+        lore:
+          - "<gray>» <white>Zmienia <yellow>efekty zwierzaka"
+          - "<gray>» <white>Kliknij PPM, aby otworzyć menu"
+  zbroje:
+    slot: 14
+    material: NETHERITE_CHESTPLATE
+    name: "<light_purple>Zbroje Mityczne"
+    title: "<light_purple>Zbroje Mityczne"
+    rows: 3
+    items:
+      mityczny_helm:
+        slot: 19
+        material: NETHERITE_HELMET
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczny Hełm"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Head:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      mityczna_klata:
+        slot: 20
+        material: NETHERITE_CHESTPLATE
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczna Klata"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Chest:"
+          - "<blue>+8 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      mityczne_spodnie:
+        slot: 21
+        material: NETHERITE_LEGGINGS
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczne Spodnie"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Legs:"
+          - "<blue>+6 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      mityczne_buty:
+        slot: 22
+        material: NETHERITE_BOOTS
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczne Buty"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Feet:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+  zbrojen1:
+    slot: 16
+    material: NETHERITE_CHESTPLATE
+    name: "<blue>Zbroje N1"
+    title: "<blue>Zbroje N1"
+    rows: 3
+    items:
+      n1_helm:
+        slot: 19
+        material: NETHERITE_HELMET
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Hełm N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Head:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      n1_klata:
+        slot: 20
+        material: NETHERITE_CHESTPLATE
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Klata N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Chest:"
+          - "<blue>+8 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      n1_spodnie:
+        slot: 21
+        material: NETHERITE_LEGGINGS
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Spodnie N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Legs:"
+          - "<blue>+6 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      n1_buty:
+        slot: 22
+        material: NETHERITE_BOOTS
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Buty N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Feet:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      n1_miecz:
+        slot: 23
+        material: NETHERITE_SWORD
+        event-item: miecz_n1
+        show-enchants: true
+        show-attributes: true
+        enchants:
+          sharpness: 6
+          fire_aspect: 2
+          unbreaking: 3
+        name: "<blue><bold>Miecz N1"
+        lore:
+          - ""
+          - "<white>Podczas walki istnieje szansa na"
+          - "<white>nadanie Ci efektu <red>siły 2 <white>na <blue>5 sekund"
+      n1_miecz:
+        slot: 23
+        material: NETHERITE_SWORD
+        event-item: miecz_n1
+        show-attributes: true
+        show-enchants: true
+        enchants:
+          sharpness: 6
+          fire_aspect: 2
+          unbreaking: 3
+        name: "<blue><bold>Miecz N1"
+        lore:
+          - ""
+          - "<white><bold>PODCZAS WALKI ISTNIEJE SZANSA NA"
+          - "<white><bold>NADANIE CI EFEKTU <red>SIŁY 2 <white>NA <blue>5 SEKUND"
+          - ""
+  kostiumy:
+    slot: 30
+    material: LEATHER_CHESTPLATE
+    color: "000000"
+    name: "<dark_purple>Kostiumy"
+    title: "<dark_purple>Kostiumy"
+    rows: 6
+    takeoff-slot: 48
+    takeoff-name: "<red>Zdejmij kostium"
+    takeoff-lore: "<gray>Zdejmuje założone części kostiumu do ekwipunku"
+    items:
+      lobuz_helm:
+        slot: 10
+        material: PLAYER_HEAD
+        texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWMyODFhNzM2ZjY3ODdkZGYxZmY4MWEyNjdjNmVlM2JkMDU4Y2QwZGQ1MDBkZDAyNTE3NmY5OWRlNjA4ZTJkNyJ9fX0="
+        costume: lobuz
+        name: "<red>Hełm Łobuza"
+        lore:
+          - "<white>Przedmiot pochodzący z <gold>Eventu Szkolnego 2026"
+          - "<white>Bonus każdej części:"
+          - "<gray>» <green>+2,5% <white>redukcji obrażeń"
+          - "<gray>» <red>+0,5 serca"
+          - "<white>Bonus za pełny <gold>kostium<white>:"
+          - "<gray>» <white>Podczas poruszania się pod graczem pojawia się <gray>Soul Sand"
+          - "<gray>» <white>Po <green>3 sekundach <white>blok wraca do swojej poprzedniej postaci"
+          - "<gray>» <white>Podczas noszenia pełnego kostiumu otrzymujesz permanentny"
+          - "<gray>» <aqua>enchant Soul Speed I <white>niezależnie od założonych butów"
+      lobuz_zbroja:
+        slot: 11
+        material: LEATHER_CHESTPLATE
+        color: "E0C9A6"
+        show-attributes: true
+        costume: lobuz
+        name: "<red>Zbroja Łobuza"
+        lore:
+          - "<white>Przedmiot pochodzący z <gold>Eventu Szkolnego 2026"
+          - "<white>Bonus każdej części:"
+          - "<gray>» <green>+2,5% <white>redukcji obrażeń"
+          - "<gray>» <red>+0,5 serca"
+          - "<white>Bonus za pełny <gold>kostium<white>:"
+          - "<gray>» <white>Podczas poruszania się pod graczem pojawia się <gray>Soul Sand"
+          - "<gray>» <white>Po <green>3 sekundach <white>blok wraca do swojej poprzedniej postaci"
+          - "<gray>» <white>Podczas noszenia pełnego kostiumu otrzymujesz permanentny"
+          - "<gray>» <aqua>enchant Soul Speed I <white>niezależnie od założonych butów"
+      lobuz_spodnie:
+        slot: 12
+        material: LEATHER_LEGGINGS
+        color: "E0C9A6"
+        show-attributes: true
+        costume: lobuz
+        name: "<red>Spodnie Łobuza"
+        lore:
+          - "<white>Przedmiot pochodzący z <gold>Eventu Szkolnego 2026"
+          - "<white>Bonus każdej części:"
+          - "<gray>» <green>+2,5% <white>redukcji obrażeń"
+          - "<gray>» <red>+0,5 serca"
+          - "<white>Bonus za pełny <gold>kostium<white>:"
+          - "<gray>» <white>Podczas poruszania się pod graczem pojawia się <gray>Soul Sand"
+          - "<gray>» <white>Po <green>3 sekundach <white>blok wraca do swojej poprzedniej postaci"
+          - "<gray>» <white>Podczas noszenia pełnego kostiumu otrzymujesz permanentny"
+          - "<gray>» <aqua>enchant Soul Speed I <white>niezależnie od założonych butów"
+      lobuz_buty:
+        slot: 13
+        material: LEATHER_BOOTS
+        color: "E0C9A6"
+        show-attributes: true
+        costume: lobuz
+        name: "<red>Buty Łobuza"
+        lore:
+          - "<white>Przedmiot pochodzący z <gold>Eventu Szkolnego 2026"
+          - "<white>Bonus każdej części:"
+          - "<gray>» <green>+2,5% <white>redukcji obrażeń"
+          - "<gray>» <red>+0,5 serca"
+          - "<white>Bonus za pełny <gold>kostium<white>:"
+          - "<gray>» <white>Podczas poruszania się pod graczem pojawia się <gray>Soul Sand"
+          - "<gray>» <white>Po <green>3 sekundach <white>blok wraca do swojej poprzedniej postaci"
+          - "<gray>» <white>Podczas noszenia pełnego kostiumu otrzymujesz permanentny"
+          - "<gray>» <aqua>enchant Soul Speed I <white>niezależnie od założonych butów"
+      wampir_helm:
+        slot: 19
+        material: PLAYER_HEAD
+        texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTRkNDEyZDhhNmI5NmNkN2FhYTgzMjJlZjc1ZmY1ZjQ0Yzc4ODhjZjMyMjQwYWQ4YzkyM2E1OGNlYTc0MDdhNiJ9fX0="
+        costume: wampir
+        name: "<red><bold>Hełm Wampira"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Halloween"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+1 obrażeń</bold>"
+          - "<gray>» <white>Po pęknięciu <yellow>totemu <white>otrzymasz efekt <red>siły 2"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium!"
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      wampir_zbroja:
+        slot: 20
+        material: LEATHER_CHESTPLATE
+        color: "7A0A0A"
+        show-attributes: true
+        costume: wampir
+        name: "<red><bold>Zbroja Wampira"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Halloween"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+1 obrażeń</bold>"
+          - "<gray>» <white>Po pęknięciu <yellow>totemu <white>otrzymasz efekt <red>siły 2"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium!"
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      wampir_spodnie:
+        slot: 21
+        material: LEATHER_LEGGINGS
+        color: "7A0A0A"
+        show-attributes: true
+        costume: wampir
+        name: "<red><bold>Spodnie Wampira"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Halloween"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+1 obrażeń</bold>"
+          - "<gray>» <white>Po pęknięciu <yellow>totemu <white>otrzymasz efekt <red>siły 2"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium!"
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      wampir_buty:
+        slot: 22
+        material: LEATHER_BOOTS
+        color: "7A0A0A"
+        show-attributes: true
+        costume: wampir
+        name: "<red><bold>Buty Wampira"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Halloween"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+1 obrażeń</bold>"
+          - "<gray>» <white>Po pęknięciu <yellow>totemu <white>otrzymasz efekt <red>siły 2"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium!"
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      piglin_helm:
+        slot: 28
+        material: PLAYER_HEAD
+        texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWYxODEwN2QyNzVmMWNiM2E5Zjk3M2U1OTI4ZDU4NzlmYTQwMzI4ZmYzMjU4MDU0ZGI2ZGQzZTdjMGNhNjMzMCJ9fX0="
+        costume: piglin
+        name: "<yellow>Hełm Piglina"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <light_purple>Świńskiego Eventu"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+2% średnich obrażeń</bold>"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium"
+          - "<gray>» <white>Ataki <yellow>podpalają <white>przeciwników specjalnym <red>płomieniem"
+          - "<gray>» <white>Ignoruje on <aqua><bold>Obsydianową Ochronę</bold> <white>oraz <blue>wodę<white>."
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      piglin_zbroja:
+        slot: 29
+        material: LEATHER_CHESTPLATE
+        color: "D4A24C"
+        show-attributes: true
+        costume: piglin
+        name: "<yellow>Zbroja Piglina"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <light_purple>Świńskiego Eventu"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+2% średnich obrażeń</bold>"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium"
+          - "<gray>» <white>Ataki <yellow>podpalają <white>przeciwników specjalnym <red>płomieniem"
+          - "<gray>» <white>Ignoruje on <aqua><bold>Obsydianową Ochronę</bold> <white>oraz <blue>wodę<white>."
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      piglin_spodnie:
+        slot: 30
+        material: LEATHER_LEGGINGS
+        color: "D4A24C"
+        show-attributes: true
+        costume: piglin
+        name: "<yellow>Spodnie Piglina"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <light_purple>Świńskiego Eventu"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+2% średnich obrażeń</bold>"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium"
+          - "<gray>» <white>Ataki <yellow>podpalają <white>przeciwników specjalnym <red>płomieniem"
+          - "<gray>» <white>Ignoruje on <aqua><bold>Obsydianową Ochronę</bold> <white>oraz <blue>wodę<white>."
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+      piglin_buty:
+        slot: 31
+        material: LEATHER_BOOTS
+        color: "D4A24C"
+        show-attributes: true
+        costume: piglin
+        name: "<yellow>Buty Piglina"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <light_purple>Świńskiego Eventu"
+          - ""
+          - "<gray>» <red><bold>+0,5 serca</bold>"
+          - "<gray>» <red><bold>+2% średnich obrażeń</bold>"
+          - "<gray>» <white>Gdy posiadasz <green>cały kostium"
+          - "<gray>» <white>Ataki <yellow>podpalają <white>przeciwników specjalnym <red>płomieniem"
+          - "<gray>» <white>Ignoruje on <aqua><bold>Obsydianową Ochronę</bold> <white>oraz <blue>wodę<white>."
+          - ""
+          - "<yellow>Kliknij PPM żeby założyć"
+          - "<white>Więcej informacji pod: <green>/kostium"
+  eventowki:
+    slot: 31
+    material: GOLDEN_AXE
+    name: "<white>[przedmioty eventowe]"
+    title: "<white>[przedmioty eventowe]"
+    rows: 6
+    items:
+      zeszyt:
+        slot: 10
+        material: BOOK
+        event-item: zeszyt
+        name: "<yellow>Zeszyt"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Szkolnego 2026"
+          - ""
+          - "<gray>» <white>Po kliknięciu <yellow>PPM <white>przedmiot zostaje <red>zużyty"
+          - "<gray>» <white>Naprawia <green>jedną losowo wybraną część"
+          - "<gray>» <white>aktualnie założonego <gold>zestawu"
+          - ""
+          - "<white>Czas odnowienia: <green>90 sekund"
+          - ""
+          - "<gray>» <red><underlined>Przedmiot jednorazowy!"
+          - ""
+          - "<yellow>Kliknij PPM, aby użyć!"
+      pszczeli_roj:
+        slot: 4
+        material: BEE_NEST
+        event-item: pszczeli_roj
+        name: "<yellow>Pszczeli Rój"
+        lore:
+          - "<gray>» <white>Klikając PPM, wystrzeliwuje <yellow>rój pszczół"
+          - "<gray>» <white>które po ukąszeniu nadają:"
+          - "<gray>» <green>Zatrucie II <white>na <yellow>15s"
+          - "<gray>» <green>Mdłości II <white>na <yellow>10s"
+          - "<gray>» <dark_purple>Zabiera 10% <white>aktualnego <red>zdrowia <white>przeciwnika"
+          - ""
+          - "<gray>» <white>Czas odnowienia: <green>120s"
+          - ""
+          - "<gray>» <white>Przedmiot z <green>Eventu Wiosennego 2026"
+      luk_kupidyna:
+        slot: 3
+        material: BOW
+        event-item: kupidyn
+        name: "<dark_red><bold>Łuk Kupidyna"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <red>eventu walentynkowego"
+          - ""
+          - "<white>Posiada unikatową umiejętność <yellow>przyciągania do siebie przeciwnika."
+          - ""
+          - "<white>Czas odnowienia: <green>90 sekund"
+          - "<yellow>Kliknij PPM, aby użyć!"
+      antyperla:
+        slot: 2
+        material: SNOWBALL
+        event-item: antyperla
+        name: "<dark_red><bold>Antyperła"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold><bold>Eventu Halloween"
+          - ""
+          - "<gray>Po trafieniu w przeciwnika, nie może on użyć perły przez 20 sekund"
+          - "<gray>Można użyć co <white><bold>30 sekund"
+          - ""
+          - "<gray>» <red><underlined>Przedmiot jednorazowy!"
+      pradawna_laska:
+        slot: 1
+        material: WOODEN_HOE
+        event-item: pradawna_laska
+        name: "<gold>Pradawna Laska"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <dark_green>Eventu Dnia Dziadka"
+          - ""
+          - "<white>Przyciąga on <red><bold>Przeciwnika</bold> <white>w obrębie <green>15 kratek..."
+          - "<white>Na którego się <gold>patrzysz"
+          - ""
+          - "<red><bold>Przeciwnik</bold> <red>otrzyma efekt:"
+          - "<gray>✖ <aqua>Spowolnienie IV"
+          - "<gold>Na okres <green>6 sekund..."
+          - ""
+          - "<white>Czas odnowienia: <green>30 sekund"
+          - "<yellow>Kliknij PPM, aby użyć!"
+      kieszen_zlodzieja:
+        slot: 5
+        material: BLACK_BUNDLE
+        event-item: kieszen
+        name: "<yellow>Kieszeń Złodzieja"
+        lore:
+          - "<white>Trzymając ten przedmiot w ekwipunku, <green>po zabiciu gracza<white>,"
+          - "<white>jego przedmioty <bold>wpadną do kieszeni złodzieja</bold><white>."
+          - ""
+          - "<aqua>Kliknij PPM żeby otworzyć sakwę."
+      palka_policyjna:
+        slot: 0
+        material: STICK
+        enchants:
+          knockback: 3
+        name: "<light_purple><bold>Pałka policyjna"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <green>eventu zimowego"
+          - ""
+          - "<yellow><bold>Solidny odrzut</bold> <white>dla każdego dzielnicowego na serwerze!"
+      pajecza_kusza:
+        slot: 6
+        material: CROSSBOW
+        event-item: pajecza_kusza
+        enchants:
+          quick_charge: 3
+          unbreaking: 3
+          mending: 1
+        name: "<light_purple>Jajeczna Kusza"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <green>eventu wielkanocnego"
+          - ""
+          - "<yellow>Posiada unikatową umiejętność pajęczej pułapki."
+          - "<white>Kliknij PPM, aby użyć umiejętności!"
+          - ""
+          - "<white>Czas Odnowienia: <green>2 minuty"
+      leki_dziadka:
+        slot: 11
+        material: PRISMARINE_CRYSTALS
+        event-item: leki_dziadka
+        name: "<dark_green>Leki Dziadka"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <dark_green>EVENTU DNIA DZIADKA"
+          - ""
+          - "<gray>» <white>Usuwa <red>wszystkie negatywne efekty."
+          - "<gray>» <white>Po zjedzeniu <green>leczy cię do pełna!"
+          - ""
+          - "<gray>» <red><underlined>Przedmiot jednorazowy!"
+          - ""
+          - "<white>Czas odnowienia: <green>60 sekund"
+          - "<yellow>Kliknij PPM, aby użyć!"
+      zakreslacz:
+        slot: 12
+        material: BAMBOO
+        event-item: zakreslacz
+        name: "<red>Zakreślacz"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <gold>Eventu Szkolnego 2026"
+          - ""
+          - "<gray>» <white>Po uderzeniu przeciwnika przez <green>15 sekund"
+          - "<gray>» <white>Na Action Barze widzisz jego <yellow>odległość w kratkach"
+          - "<gray>» <white>Dodatkowo przeciwnik otrzymuje <white><bold>Biały Glowing</bold> <white>na <green>5 sekund"
+          - ""
+          - "<gray>» <white>Klikając <gold>PPM <white>na przeciwniku, usuwasz mu"
+          - "<red>» <red><bold>Wszystkie pozytywne efekty!</bold>"
+          - ""
+          - "<white>Czas odnowienia: <green>180 sekund"
+      siekiera_brutala:
+        slot: 13
+        material: GOLDEN_AXE
+        event-item: siekiera_brutala
+        name: "<red><bold>Siekiera Brutala"
+        lore:
+          - "<white>Specjalny przedmiot z <red><bold>NETHERU</bold>"
+          - ""
+          - "<gray>» <white>Kradnie przeciwnikowi <green><bold>30%</bold> <white>życia"
+          - "<gray>» <white>I nadaje je <yellow>tobie!"
+          - ""
+          - "<gray>» <yellow>Czas odnowienia: 2 minuty"
+      wichrowa_kosa:
+        slot: 22
+        material: MACE
+        event-item: wichrowa_kosa
+        enchants:
+          wind_burst: 1
+          density: 5
+          breach: 4
+        name: "<aqua>Wichrowa Kosa"
+        lore:
+          - "<gray>Enchantments"
+          - "  <green>Wind Burst I"
+          - "  <gold>Density V"
+          - "  <gold>Breach IV"
+          - "<white>Przedmiot zdobyty podczas <white><bold>Eventu NOWOROCZNEGO"
+          - ""
+          - "<gray>» <white>(<yellow>PPM<white>) - zostajesz wyrzucony w górę na <yellow>25 kratek"
+          - "<gray>» <white>Czas odnowienia: <green>30 sekund"
+          - ""
+          - "<gray>» <white>(<yellow>SHIFT + PPM<white>) - Nadaje graczom efekty"
+          - "          <white>W promieniu <gold>8 Kratek"
+          - "<gray>→ <aqua>Powolne Kopanie III"
+          - "<gray>→ <gray>Spowolnienie I"
+          - "<gold>Na okres 3 sekund..."
+          - "<gray>» <white>Czas odnowienia: <green>30 sekund"
+      petarda:
+        slot: 14
+        material: FIREWORK_ROCKET
+        event-item: petarda
+        name: "<gold>Petarda"
+        lore:
+          - "<white>Przedmiot zdobyty podczas <white><bold>Eventu NOWOROCZNEGO"
+          - ""
+          - "<white>Użyty na Ziemi <red><bold>Wzbija się w Powietrze!"
+          - "<white>Gdy napotka <yellow>przeszkodę <dark_red>rozbija się..."
+          - "<white>Na <green>całej długości lotu <white>pojawiają się <dark_red>wybuchy!"
+          - "<white>Niszcząc <dark_purple>wszystkie bloki do okoła!"
+          - ""
+          - "<gray>» <red><underlined>Przedmiot jednorazowy!"
+          - ""
+          - "<yellow>Kliknij PPM, aby użyć!"
+      ev_mityczny_helm:
+        slot: 27
+        material: NETHERITE_HELMET
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczny Hełm"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Head:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_mityczna_klata:
+        slot: 28
+        material: NETHERITE_CHESTPLATE
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczna Klata"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Chest:"
+          - "<blue>+8 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_mityczne_spodnie:
+        slot: 29
+        material: NETHERITE_LEGGINGS
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczne Spodnie"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Legs:"
+          - "<blue>+6 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_mityczne_buty:
+        slot: 30
+        material: NETHERITE_BOOTS
+        enchants:
+          protection: 6
+          unbreaking: 6
+        knockback-resistance: 0.25   # per piece, ustaw wedlug tego co chcesz (zdjecie pokazuje +1)
+        name: "<light_purple><bold>Mityczne Buty"
+        lore:
+          - "<gray>Protection VI"
+          - "<gray>Unbreaking VI"
+          - ""
+          - "<blue>When on Feet:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_n1_helm:
+        slot: 36
+        material: NETHERITE_HELMET
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Hełm N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Head:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_n1_klata:
+        slot: 37
+        material: NETHERITE_CHESTPLATE
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Klata N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Chest:"
+          - "<blue>+8 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_n1_spodnie:
+        slot: 38
+        material: NETHERITE_LEGGINGS
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Spodnie N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Legs:"
+          - "<blue>+6 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_n1_buty:
+        slot: 39
+        material: NETHERITE_BOOTS
+        enchants:
+          protection: 5
+          unbreaking: 4
+        knockback-resistance: 0.25   # per piece, jak w zbroi mitycznej
+        name: "<blue><bold>Buty N1"
+        lore:
+          - "<gray>Protection V"
+          - "<gray>Unbreaking IV"
+          - ""
+          - "<blue>When on Feet:"
+          - "<blue>+3 Armor"
+          - "<blue>+3 Armor Toughness"
+          - "<blue>+1 Knockback Resistance"
+      ev_n1_miecz:
+        slot: 40
+        material: NETHERITE_SWORD
+        event-item: miecz_n1
+        show-enchants: true
+        show-attributes: true
+        enchants:
+          sharpness: 6
+          fire_aspect: 2
+          unbreaking: 3
+        name: "<blue><bold>Miecz N1"
+        lore:
+          - ""
+          - "<white>Podczas walki istnieje szansa na"
+          - "<white>nadanie Ci efektu <red>siły 2 <white>na <blue>5 sekund"
+      ev_miecz_n1:
+        slot: 40
+        material: NETHERITE_SWORD
+        event-item: miecz_n1
+        show-attributes: true
+        show-enchants: true
+        enchants:
+          sharpness: 6
+          fire_aspect: 2
+          unbreaking: 3
+        name: "<blue><bold>Miecz N1"
+        lore:
+          - ""
+          - "<white><bold>PODCZAS WALKI ISTNIEJE SZANSA NA"
+          - "<white><bold>NADANIE CI EFEKTU <red>SIŁY 2 <white>NA <blue>5 SEKUND"
+          - ""
+  serca:
+    slot: 32
+    material: RED_DYE
+    name: "<red>Serca"
+    title: "<red>Serca"
+    rows: 6
+    items:
+      serce:
+        slot: 21
+        material: RED_DYE
+        heart: normal
+        name: "<red>Serce"
+        lore:
+          - "<gray>Prawy klik: +1 serce"
+          - "<gray>Limit: 20 zwyklych serc"
+      piekielne_serce:
+        slot: 23
+        material: BLACK_DYE
+        heart: infernal
+        name: "<dark_red>Piekielne Serce"
+        lore:
+          - "<gray>Prawy klik: +1 serce"
+          - "<gray>Limit: 10 piekielnych serc"

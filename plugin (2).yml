@@ -1,0 +1,33 @@
+name: SelectItemy
+version: 1.0.0
+main: pl.n1mcffa.selectitemy.SelectItemy
+api-version: '1.21'
+softdepend: [PlaceholderAPI, Vault]
+commands:
+  selectitemy:
+    description: Otwiera menu wyboru itemow
+    aliases: [itemy]
+  repair:
+    description: Naprawia przedmiot w rece lub wszystkie (all)
+    usage: /repair [all]
+  kostium:
+    description: Otwiera menu kostiumow
+  wyplacserce:
+    description: Wyplaca serca jako przedmioty
+    usage: /wyplacserce <ilosc> [piekielne]
+    aliases: [wyplac]
+  zwierzak:
+    description: Pokazuje aktywne efekty zwierzaka
+    aliases: [pet]
+permissions:
+  selectitemy.use:
+    default: true
+  selectitemy.bypass:
+    description: Pomija cooldown
+    default: op
+  selectitemy.reload:
+    default: op
+  selectitemy.repair:
+    default: op
+  selectitemy.repair.all:
+    default: op
